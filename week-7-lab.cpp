@@ -1,5 +1,5 @@
 #include <iostream>
-// Library needed to get a random seed
+// Library needed to get a random number
 #include <time.h>
 using namespace std;
 
@@ -7,7 +7,7 @@ using namespace std;
 int main ()
 {
   
-int Number, Balance, Bet, Prize, Loss, y;
+int Number, Balance, Bet, Prize, Loss,y;
   
 Balance = 500;
   
@@ -28,82 +28,89 @@ cout << "** WELCOME **" << endl; // print the welcome message
 cout << "*************" << endl;
   
  
-  do
-    
-    {
+while(Balance > 0)
+
+ {
       
 cout << "You Have " << Balance << " For Bet" << endl; // print the current balance of user
-      
-cout << "Choose Number 1 or 0: "; //ask the user to enter number between 1 and 0
-      
-cin >> Number;
 
-cout << "Enter Your Bet Ammount: "; // ask the user to enter the bet
+cout << "Enter Your Bet Ammount: "; // ask the user to enter the bet and start the loop
 
 cin>>Bet;
 
- if (Bet > Balance)                          // condition if bet is more then balance
 
-{
-  cout << "SORRY! You Are Cashing Out" << endl; // it end the program if the above condition meet
+ if (Bet < Balance)                          //condition if bet is less than balance
 
-  cout<< "***GAME OVER***";
-
-  return 0; // quit the program
-
-}
-
- if (Number == 0)	                            // condition if input Number is 0
-	  
-{
-	  
-cout << "Sorry! You Loose The Bet" << endl;    // bet loose
-	  
-Loss = Balance - Bet;
-cout << "You Balance Become: " << Loss << endl; // shows the lost ammount
-
-Balance = Loss;
-
-cout<<"Press 1 To Continue....."<<endl; // it continue the program
-
-cin>>y;
-
-}
+  {
+    cout << "Choose Number 1 or 0: "; //ask the user to enter number between 1 and 0
       
-else if (Number == 1)               // condition if Number is equal to 1
-	
-{
+    cin >> Number;
+
+         if (Number == random)	                   // if the number is right at the moment
+         {  
+             cout << "Your Guess Is Right" << endl;
+             
+             cout << "Congratulation! You Win The Bet" << endl; // print the wining message
 	  
-cout << "Congratulation! You Win The Bet" << endl; // print the wining message
+             Prize = 2 * Bet + Balance; //mathematical operation to calculate the prize
 	  
-Prize = 2 * Bet + Balance;
-	  
-cout << "Your Balance Become: " << Prize << endl;	// print the balance after win
+             cout << "Your Balance Become: " << Prize << endl;	// print the balance after win
 
-Balance = Prize;
+             Balance = Prize;
 
-cout<<"Press 1 To Continue....."<<endl; // continue the program
+             cout<<"Press 1 To Continue....."<<endl; // continue the program
 
-cin>>y;
+             cin>>y;
+         }
 
-}
       
-      else
+         else if (Number==1 || Number==0 )               // condition if Number is wrong at the moment
 	
-	{
+         {
+	      
+         cout << "Your Guess Is Wrong" << endl; 
+
+         cout << "Sorry! You Loose The Bet" << endl;    // bet loose
 	  
-cout << "SORRY! You Are Cashing Out" << endl; // print the cashing out message
+         Loss = Balance - Bet;   //mathematical operation to calculate the loss
+
+         cout << "You Balance Become: " << Loss << endl; // shows the balance after loss
+
+         Balance = Loss;
+
+         cout<<"Press 1 To Continue....."<<endl; // it continue the program
+
+         cin>>y;
+         }
+         else
+	
+	     {
+        
+         cout <<"You Enter The Number Rather Then 1 and 0" << endl; //if the user enter the number rather than 1 and 0
+
+         cout << "You Break The Rule Of Game" << endl;
+
+         cout << "You Are Cashing Out" << endl; // print the cashing out message
 	  
-cout << "***GAME OVER***" << endl;
+         cout << "***GAME OVER***" << endl;
 
-return 0; // quit the program
+         break; // quit the program
 
-     }     
+         }     
 
-}
-while (y ==1 ); // it continue the program
-while(Bet>=Balance || Loss==Balance); //it repeat the program according to condition
- 
-return 0; // it return the zero value
+    }
+ else
+    {   
+         cout << "You Balance Is Not Enough To Continue The Game" << endl;
 
+         cout << "SORRY! You Are Cashing Out" << endl; // print the cashing out message
+	  
+         cout << "***GAME OVER***" << endl;
+         
+         break; // quit the program
+    } 
+ }       
+  while (y ==1 ); // it continue the program
+
+  return 0; // it return the zero value
 }
